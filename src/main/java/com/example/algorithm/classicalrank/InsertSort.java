@@ -16,23 +16,56 @@ public class InsertSort {
 
     public static int [] insertSort(int [] arr){
         int num = 0;
-        for(int i = 1;i<arr.length;i++){
+        for(int i =1;i<arr.length;i++){
             int temp = arr[i];
-            int leftTemp = i-1;
-            while(leftTemp>=0 && arr[leftTemp]>temp){
-                arr[leftTemp+1] = arr[leftTemp];
-                leftTemp--;
-                num++;
+            int left = i-1;
+            while(left>=0 && arr[left]>temp){
+                arr[left+1] = arr[left];
+                left --;
             }
-            num++;
-            arr[leftTemp+1]  = temp;
+            arr[left+1] = temp;
         }
         System.out.println("执行循环次数: "+num);
         return arr;
     }
     public static void main(String [] args){
         int [] arr = new int[]{34,324,23,42,34,1,23,12,3};
+//        insertSort2(arr);
         insertSort(arr);
         Arrays.stream(arr).forEach(System.out::println);
     }
+
+    public static void insertSort2(int [] arr){
+        int num = 0;
+        for(int i =1;i<arr.length;i++){
+           num++;
+           int temp;
+           if(arr[i]<arr[i-1]){
+            temp = arr[i];
+            for(int j = i;j>=0;j--){
+                num++;
+                if(j>0 && arr[j-1]>temp){
+                    arr[j] = arr[j-1];
+                }else{
+                    arr[j] = temp;
+                    break;
+                }
+            }
+           }
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+
+
+//    for(int i = 1;i<arr.length;i++){
+//        int temp = arr[i];
+//        int leftTemp = i-1;
+//        while(leftTemp>=0 && arr[leftTemp]>temp){
+//            arr[leftTemp+1] = arr[leftTemp];
+//            leftTemp--;
+//            num++;
+//        }
+//        num++;
+//        arr[leftTemp+1]  = temp;
+//    }
 }
